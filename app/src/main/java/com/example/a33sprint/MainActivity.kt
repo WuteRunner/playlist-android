@@ -3,9 +3,9 @@ package com.example.a33sprint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.a33sprint.com.example.a33sprint.Track
 
 class MainActivity : ComponentActivity() {
 
@@ -14,54 +14,29 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(tag, "onCreate")
+
         setContent {
-            PlaylistScreen(
-                tracks = listOf(
-                    Track("Bohemian Rhapsody", "Queen", "5:55", isFavorite = true),
-                    Track("Imagine", "John Lennon", "3:03"),
-                    Track("Stairway to Heaven", "Led Zeppelin", "8:02", isFavorite = true)
-                ),
-                onAboutClick = {
-                    // явный Intent → переход на AboutActivity
-                    val intent = Intent(this@MainActivity, AboutActivity::class.java)
-                    startActivity(intent)
+            MainScreen(
+                onSearchClick = {
+                    startActivity(Intent(this@MainActivity, SearchActivity::class.java))
                 },
-                onShareClick = {
-                    // неявный Intent → поделиться текстом
-                    val shareText = getString(R.string.share_text)
-                    val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                        type = "text/plain"
-                        putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject))
-                        putExtra(Intent.EXTRA_TEXT, shareText)
-                    }
-                    startActivity(Intent.createChooser(shareIntent, null))
+                onMediaLibraryClick = {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Нажата кнопка \"Медиатека\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                },
+                onSettingsClick = {
+                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
                 }
             )
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d(tag, "onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(tag, "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(tag, "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(tag, "onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(tag, "onDestroy")
-    }
+    override fun onStart() { super.onStart(); Log.d(tag, "onStart") }
+    override fun onResume() { super.onResume(); Log.d(tag, "onResume") }
+    override fun onPause() { super.onPause(); Log.d(tag, "onPause") }
+    override fun onStop() { super.onStop(); Log.d(tag, "onStop") }
+    override fun onDestroy() { super.onDestroy(); Log.d(tag, "onDestroy") }
 }
