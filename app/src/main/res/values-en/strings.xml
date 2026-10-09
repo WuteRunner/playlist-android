@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Music Playlist</string>
+    <string name="hello_android">Hello, Android!</string>
+    <string name="jetpack_text">Jetpack Compose is a modern toolkit for building native Android UI, developed by Google</string>
+    <string name="standard_icon">Standard icon</string>
+    <string name="playlist_title">My playlist</string>
+    <string name="favorite_marker">★</string>
+    <string name="about_text">Music Playlist — an educational Jetpack Compose project</string>
+    <string name="btn_about">About</string>
+    <string name="btn_share">Share</string>
+    <string name="share_subject">Music Playlist</string>
+    <string name="share_text">I\'m listening to my playlist in the "Music Playlist" app!</string>
+</resources>
