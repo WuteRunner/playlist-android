@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.statusBarsPadding
 
 @Composable
 fun SearchScreen() {
@@ -32,11 +33,12 @@ fun SearchScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .statusBarsPadding()
             .padding(16.dp)
     ) {
         TextField(
             value = query,
-            onValueChange = { query = it },
+            onValueChange = { oleg -> query = oleg },
             modifier = Modifier.fillMaxWidth(),
             placeholder = { Text(stringResource(R.string.search_hint)) },
             leadingIcon = {
