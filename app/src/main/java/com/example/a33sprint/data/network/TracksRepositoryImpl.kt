@@ -13,12 +13,11 @@ class TracksRepositoryImpl(private val networkClient: NetworkClient) : TracksRep
 
         if (response.resultCode == 200) {
             return (response as TracksSearchResponse).results.map {
-                // Конвертируем миллисекунды в формат mm:ss
+
                 val seconds = it.trackTimeMillis / 1000
                 val minutes = seconds / 60
                 val trackTime = "%02d".format(minutes) + ":" + "%02d".format(seconds - minutes * 60)
 
-                // Возвращаем доменную модель
                 Track(it.id, it.trackName, it.artistName, trackTime)
             }
         } else {
